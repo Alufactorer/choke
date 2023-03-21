@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+
+
+<body>
+
+    <script>
+
+
+        function $tore(init){
+            this.value = init;
+
+
+            return {
+                change : mut => {
+                    return new $tore(mut(this.value))
+
+                },
+                value: this.value
+            }
+                
+        }
+
+        var componentStore = new $tore({})
+
+
+
+
+        function signal(init){
+            this.value = init;
+
+
+
+            return this
+
+        }
+
+
+        function beforeInit(){
+            for(var x in window){
+                if(window[x] instanceof signal){
+                    componentStore = componentStore.change(value => {
+                        return {...value, [x]:window[x]} 
+                    })
+                }
+            }
+            
+        }
+
+        
+
+        var counter = new signal("hello there")
+        var newcounter = new signal("hey")
+        
+        beforeInit()
+
+
+        console.log(componentStore.value)
+
+        const init = () => {    
+            const reg = /\{([^)]+)\}/g
+            console.log(componentStore.value) 
+            const interpolated = `${document.getElementsByTagName("main")[0].innerHTML}`.match(reg)
+
+
+            console.log(interpolated)
+
+            const divs = [...document.getElementsByTagName("main")[0].getElementsByTagName("div")]
+
+
+            interpolated.forEach(value => {
+
+                divs.forEach(el => {
+
+                    if(el.innerHTML.includes(value)){
+                        let v = value.replace("{", "").replace("}", "")
+                        el.classList.add(`value_$${v}`)
+                        el.innerHTML = el.innerHTML.replace(value, componentStore.value[v].value)
+                    }
+                })
+            })
+
+
+            
+
+
+            
+        }
+
+        document.addEventListener("DOMContentLoaded", init)
+
+
+        
+
+            
+    </script>    
+
+
+    <main>
+        <div>{counter}</div>
+        <button onclick="log()">click</button>
+    </main>
+</body>

@@ -1,0 +1,18 @@
+{
+  "name": "choke",
+  "version": "1.0.0",
+  "description": "a framework i built myself, because there arent enough js frameworks",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "js",
+    "framework"
+  ],
+  "author": "Alim Weber",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+
+
+
+
+
+<script>
+
+var s = new signal([1, 2, 3, 4]);
+var hello = new signal("hello there");
+
+componentStore.subscribe(res => console.log(res))
+function h(){
+    hello.change(value => "hello new")
+    s.change(value => value + 1)
+}
+
+</script>
+
+<main>
+    <div>{hello}</div>
+    <div>{s.map(res => "div" + res).join("")}</div>
+    <button onclick="h()">hello htere</button>
+</main>
+
