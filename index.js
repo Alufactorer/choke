@@ -5,7 +5,7 @@ const app = express();
 
 
 
-
+app.use(express.static("lib"))
 
 app.get("/", (req, res) => {
     
