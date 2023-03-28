@@ -13,6 +13,7 @@
   "author": "Alim Weber",
   "license": "ISC",
   "dependencies": {
+    "@types/node": "^18.15.10",
     "express": "^4.18.2"
   }
 }
