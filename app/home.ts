@@ -58,16 +58,3 @@ globalStore.mutate(name => "new name")
 
 console.log(globalStore)
 
-
-
-
-
-function Home(){
-}
-
-
-const sim = {
-    Home
-
-}
-
